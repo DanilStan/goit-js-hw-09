@@ -8,20 +8,23 @@ buttonStop.addEventListener('click', onButtonStop);
 
 function onButtonStart() {
   document.body.style.backgroundColor = getRandomHexColor();
-  buttonStart.disabled = true;
-  buttonStop.disabled = false;
+  buttonStatus(true, false);
   timerId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
 }
 
 function onButtonStop() {
-  buttonStart.disabled = false;
-  buttonStop.disabled = true;
+  buttonStatus(false, true);
   document.body.style.backgroundColor = '#fff';
   clearInterval(timerId);
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
+function buttonStatus(open, close) {
+  buttonStart.disabled = open;
+  buttonStop.disabled = close;
 }
