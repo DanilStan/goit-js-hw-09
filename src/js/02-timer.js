@@ -41,6 +41,10 @@ function calculateTime() {
   calendar.disabled = true;
   const currentDate = new Date();
   const resoultTime = userTime - currentDate;
+  if (resoultTime < 1000) {
+    clearInterval(intervalId);
+    return;
+  }
   const totalTime = convertMs(resoultTime);
   markupAttributeTimer(totalTime);
 }
